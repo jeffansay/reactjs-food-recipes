@@ -8,7 +8,7 @@ class Search extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-10 mx-auto col-md-8 mt-5">
-                        <h1 className="text-slanted text-capitalize">
+                        <h1 className="text-slanted text-capitalize text-center">
                             search recipes with{" "}
                             <strong className="text-orange">Food2Fork</strong>
                         </h1>

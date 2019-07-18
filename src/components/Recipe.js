@@ -5,7 +5,7 @@ class Recipe extends Component {
         const {image_url, title, source_url, publisher, recipe_id } = this.props.recipe
         return (
             <React.Fragment>
-                 <div className="col-10 mx-auto col-md-6 col-lg-4">
+                 <div className="col-10 mx-auto col-md-6 col-lg-4 mt-3">
                      <div className="card" style={{height:'100%'}}>
                          <img src={image_url} 
                               alt="recipe" 

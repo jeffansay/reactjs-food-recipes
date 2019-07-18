@@ -5,12 +5,41 @@ import { recipeData } from '../assets/data/tempList'
 class Recipes extends Component {
     constructor(props) {
         super(props)
+        this.getRecipes = this.getRecipes.bind(this);
     }
     state = {
-        recipes: recipeData,
-        search: ''
+        recipes: [],
+        search: '',
+        url: `https://www.food2fork.com/api/search?key=${process.env.REACT_APP_API_KEY}`,
+        baseUrl: `https://www.food2fork.com/api/search?key=${process.env.REACT_APP_API_KEY}`,
+        query: '&q=',
+        error: ''
     }
 
+    async getRecipes () {
+        try {
+            const data = await fetch(this.state.url)
+            const jsonData = await data.json();
+
+            if(jsonData.recipes.length === 0) {
+                this.setState({
+                    error: 'sorry but your search did not return any recipes, please try again or  press search icon for the most popular recipes'
+                })
+            } else {
+                this.setState({
+                    recipes: jsonData.recipes,
+                    error: ''
+                })
+            }
+        
+        } catch(error){
+            console.log(error)
+        }
+    }
+
+    componentDidMount() {
+        this.getRecipes();
+    }
     handleChange = e => {
         this.setState({
             search: e.target.value
@@ -19,10 +48,11 @@ class Recipes extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state.search, '--search input')
+        const { baseUrl, query, search } = this.state
         this.setState({
-            search: ''
-        })
+           url: `${baseUrl}${query}${search}`,
+           search: ''
+        }, () => this.getRecipes())
     }
 
     render() {
@@ -30,7 +60,13 @@ class Recipes extends Component {
         return (
             <React.Fragment>
                 <Search search={this.state.search} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
-                <RecipeList recipes={this.state.recipes}/>
+                {this.state.error? (<section><div className="row">
+                                            <h2 className="text-orange text-center text-uppercase mt-5">
+                                            {this.state.error}    
+                                            </h2> 
+                                            </div></section>) :
+                                             (<RecipeList recipes={this.state.recipes}/>) }
+                
             </React.Fragment>
         );
     }
