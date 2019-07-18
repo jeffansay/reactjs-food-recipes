@@ -61,9 +61,11 @@ class Recipes extends Component {
             <React.Fragment>
                 <Search search={this.state.search} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
                 {this.state.error? (<section><div className="row">
+                                            <div className="container">
                                             <h2 className="text-orange text-center text-uppercase mt-5">
                                             {this.state.error}    
                                             </h2> 
+                                            </div>
                                             </div></section>) :
                                              (<RecipeList recipes={this.state.recipes}/>) }
                 
