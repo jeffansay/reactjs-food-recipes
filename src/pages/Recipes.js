@@ -19,13 +19,16 @@ class Recipes extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        console.log(this.state.search, '--search input')
+        this.setState({
+            search: ''
+        })
     }
 
     render() {
         console.log(this.state.recipes, "--recipes")
         return (
             <React.Fragment>
-          
                 <Search search={this.state.search} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
                 <RecipeList recipes={this.state.recipes}/>
             </React.Fragment>

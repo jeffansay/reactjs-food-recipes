@@ -14,12 +14,12 @@ class App extends Component {
         <Router >
           <main>
             <Navbar />
-            <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/recipes"  component={Recipes} />
-            <Route path="/recipes/:id" component={SingleRecipe} />
-            <Route component={Default} />
-            </Switch>
+              <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/recipes"  component={Recipes} />
+                <Route path="/recipe/:id" component={SingleRecipe} />
+                <Route component={Default} />
+              </Switch>
             </main>
         </Router>
       </div>
