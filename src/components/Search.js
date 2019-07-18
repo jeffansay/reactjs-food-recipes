@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Search extends Component {
     render() {
         const {handleChange, handleSubmit, search } = this.props
-        console.log(this.props, '--props')
+
         return (
             <div className="container">
                 <div className="row">
