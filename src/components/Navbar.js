@@ -11,7 +11,7 @@ const Navbar = () => {
                 <ul className="navbar-nav">
                     <li className="navbar-item">
                         <Link to='/' className="nav-link">
-                            Homesssss
+                            Home
                         </Link>
                     </li>
                     <li className="navbar-item">
