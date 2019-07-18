@@ -4,12 +4,25 @@ import { Link } from 'react-router-dom'
 class SingleRecipe extends Component {
     constructor(props){
         super(props);
-        console.log(this.props, '--all object!')
         const id = this.props.match.params.id
         this.state = {
-            recipe: recipeData,
+            recipe: {},
             id,
-            loading: false
+            loading: true
+        }
+    }
+
+    async componentDidMount() {
+        const url = `https://www.food2fork.com/api/get?key=${process.env.REACT_APP_API_KEY}&rId=${this.state.id}`
+        try {
+            const response = await fetch(url);
+            const responseData = await response.json()
+            this.setState({
+                recipe: responseData.recipe,
+                loading: false
+            })
+        } catch(error){
+            console.log(error)
         }
     }
     render() {
