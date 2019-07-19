@@ -16,6 +16,7 @@ class Recipes extends Component {
         error: ''
     }
 
+    // cca0d6ffe2ee2d32d74d7ebb3f314693
     async getRecipes () {
         try {
             const data = await fetch(this.state.url)
